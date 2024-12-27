@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.password-container input[type="password"] {
+    width: 100%;
+    padding-right: 30px; /* Espaço para o ícone */
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para o ícone de olho dentro do campo */
+.eye-icon {
+    position: absolute !important;
+    right: 60px !important;
+    top: 73%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+}
+
+/* Mostrar o ícone mesmo quando o campo estiver em foco */
+input[type="password"]:focus + .eye-icon {
+    display: block; /* Garante que o ícone continue visível ao focar o campo */
+}
+
+.eye-icon:hover {
+    color: #333; /* Cor do ícone ao passar o mouse */
+}
+
+/* Manter o ícone dentro do input */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.error-message{
+    color: #0056b3;
+}
+
+.container img {
+    padding: 0 0 15px 0;
+}
+
+.container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span {
+    font-size: 12px;
+}
+
+.container a {
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button {
+    width: 75%;
+    padding: 14px 20px; /* Aumentando o padding para dar mais espaço */
+    background-color: #8a00ff; /* Cor de fundo roxa */
+    color: #fff; /* Cor do texto branco */
+    border: none; /* Removendo a borda padrão */
+    border-radius: 50px; /* Bordas arredondadas */
+    font-size: 15px; /* Tamanho da fonte maior para mais legibilidade */
+    font-weight: bold; /* Tira a leveza do texto, deixando-o mais forte */
+    cursor: pointer; /* Alterando o cursor para pointer (mãozinha) */
+    transition: all 0.3s ease; /* Transição suave para os efeitos de interação */
+    box-shadow: 0 4px 8px rgba(9, 8, 0, 0.3); /* Sombra sutil ao redor do botão */
+}
+
+.container button.hidden {
+    background-color: transparent;
+    border-color: #fff;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3); /* Aumenta a sombra para dar o efeito de elevação */
+
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.container button:hover {
+    background-color: #6307b4; /* Mudança na cor de fundo para um tom mais escuro */
+    transform: translateY(-3px); /* Sobe o botão um pouco para dar um efeito de "elevação" */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra para dar o efeito de elevação */
+}
+
+/* Efeito ao focar no botão */
+.container button:focus {
+    outline: none; /* Remove a borda padrão ao focar */
+    box-shadow: 0 0 8px rgba(140, 0, 255, 0.6); /* Adiciona uma borda suave de foco azul */
+    transform: translateY(-1px); /* Leve elevação ao focar */
+}
+
+/* Efeito de animação de click (pressionado) */
+.container button:active {
+    transform: translateY(2px); /* Dá a sensação de que o botão foi pressionado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Retorna a sombra ao estado inicial */
+}
+
+.container form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Estilo para o span */
+span {
+    display: block;
+    margin: 5px 0; /* Espaçamento superior e inferior */
+    text-align: center; /* Alinha o texto ao centro */
+    color: #555; /* Cor mais suave para o texto */
+    font-size: 14px; /* Tamanho da fonte */
+    font-weight: 500; /* Peso da fonte um pouco mais forte */
+    font-style: italic; /* Deixa o texto em itálico */
+    letter-spacing: 0.7px; /* Espacamento entre as letras */
+}
+
+.sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in {
+    transform: translateX(100%);
+}
+
+.sign-up {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+/* Estilo para os inputs (Email, Senha) */
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 12px 15px; /* Padding interno para aumentar o espaço */
+    margin: 10px 0; /* Espaçamento entre os campos */
+    border: 1.7px solid #ddd; /* Cor da borda */
+    border-radius: 20px; /* Borda arredondada */
+    background-color: #f9f9f9; /* Cor de fundo clara */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+    transition: all 0.5s ease; /* Transição suave para os efeitos */
+}
+
+/* Efeito de foco nos inputs */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #007BFF; /* Cor da borda quando o input está em foco */
+    background-color: #e6f0ff; /* Cor de fundo quando em foco */
+    outline: none; /* Remove o contorno padrão */
+    transform: scale(1.05); /* Aumenta o tamanho do input quando em foco */
+    z-index: 1; /* Certifique-se de que o input em foco fique acima dos outros elementos */
+}
+
+/* Efeito para o texto de placeholder */
+input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="password"]::placeholder {
+    color: #bbb; /* Cor do texto de placeholder */
+    font-style: italic; /* Torna o texto de placeholder em itálico */
+}
+
+
+.social-icons {
+    margin: 20px 0;
+    transition: color 0.3s ease;
+}
+
+.social-icons a {
+    border: 1px solid #ccc;
+    border-radius: 25%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.9s ease, background-color 0.5s ease;
+    
+}
+
+.social-icons a:hover {
+    background-color: #720d6a;
+    color: #ccc;
+    transform: scale(1.2);
+}
+
+.esqueceu_senha {
+    display: inline-block;
+    margin-top: 10px !important;
+    font-size: 12px !important;
+    color: #6aacf1 !important;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Efeito de hover (quando o mouse passa por cima do link) */
+.esqueceu_senha:hover {
+    color: #0077ffe1 !important; /* Cor laranja quando passar o mouse */
+    text-decoration: underline; /* Adiciona o sublinhado no hover */
+    text-decoration: none;
+}
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle {
+    background-color: #8a00ff;
+    height: 100%;
+    background: linear-gradient(to right, #cc00ff, #8a00ff);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle {
+    transform: translateX(50%);
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+    transform: translateX(0);
+}
+
+.toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right {
+    transform: translateX(200%);
+}
+
+#popup {
+    display: none; /* Inicialmente o pop-up é escondido */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); /* Reduz o tamanho no início */
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    border-radius: 20px;
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Transições para fade e scale */
+}
+
+/* Fundo escurecido */
+#popup-overlay {
+    display: none; /* Inicialmente o fundo é escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Estilos do texto do pop-up */
+#popup h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#popup p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Botão de fechar */
+#close-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#close-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Botão de fechar */
+#close-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#close-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para o Rodapé */
+footer {
+    background-color: #333; /* Cor de fundo do rodapé */
+    color: #fff; /* Cor do texto (branco) */
+    text-align: center; /* Alinha o texto ao centro */
+    padding: 15px; /* Espaçamento dentro do rodapé */
+    position: fixed; /* Fixar o rodapé no fundo da página */
+    bottom: 0; /* Alinha ao fundo da página */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Largura de 100% da tela */
+    font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Estilo para o texto do copyright */
+footer p {
+    margin: 0; /* Remove a margem do parágrafo */
+    font-family: Arial, sans-serif; /* Fonte simples e legível */
+    font-weight: 400; /* Peso normal da fonte */
+    line-height: 1.5; /* Espaçamento entre as linhas */
+}
